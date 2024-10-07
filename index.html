@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        .header {
+            padding: 20px;
+            background-color: pink; /* Match background color */
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+        .footer {
+            padding: 15px;
+            background-color: #F4C2C2; /* Baby Pink */
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .letter {
+            margin: 20px;
+            padding: 15px;
+            background-color: #ffe4e1;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gallery {
+            position: relative;
+            width: 90%;
+            height: 600px;
+            margin: 0 auto;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 5px solid white;
+            position: absolute;
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Randomly place images */
+        .gallery img:nth-child(2) { top: 100px; left: 350px; transform: rotate(5deg); }
+		.gallery img:nth-child(3) { top: 25px; left: 950px; transform: rotate(30deg); }
+        .gallery img:nth-child(1) { top: 250px; left: 175px; transform: rotate(-7deg); }
+        .gallery img:nth-child(4) { top: 50px; left: 650px; transform: rotate(10deg); }
+        .gallery img:nth-child(5) { top: 200px; left: 550px; transform: rotate(-5deg); }
+        .gallery img:nth-child(6) { top: 150px; left: 825px; transform: rotate(7deg); }
+        .gallery img:nth-child(7) { top: 300px; left: 400px; transform: rotate(0deg); }
+        .gallery img:nth-child(8) { top: 350px; left: 725px; transform: rotate(-8deg); }
+        .gallery img:nth-child(9) { top: 250px; left: 950px; transform: rotate(5deg); }
+        .gallery img:hover { transform: scale(1.1); }
+        .music-player {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: pink; /* Match background color */
+            border-radius: 10px;
+            color: white;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #ff69b4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Happy Birthday!
+    </div>
+
+    <div class="letter">
+		<p>Thirty years around the sun,</p> 
+		<p>only happens once in a life time.</p>
+		<p>I had to celebrate.</p>
+    </div>
+
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+		<img src="hello5.jpg" alt="Gallery Image 1">
+        <img src="hello4.jpg" alt="Gallery Image 2">
+        <img src="hello6.jpg" alt="Gallery Image 3">
+        <img src="hello2.jpg" alt="Gallery Image 4">
+        <img src="hello3.jpg" alt="Gallery Image 5">
+        <img src="hello1.jpg" alt="Gallery Image 6">
+        <img src="hello7.jpg" alt="Gallery Image 7">
+        <img src="hello9.jpg" alt="Gallery Image 8">
+        <img src="hello8.jpg" alt="Gallery Image 9">
+    </div>
+
+    <div class="music-player">
+        <h2>Now Playing</h2>
+        <audio id="audioPlayer" controls>
+            <source src="vicente.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+            <button onclick="prevSong()">Previous</button>
+            <button onclick="nextSong()">Next</button>
+        </div>
+    </div>
+
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+		const songs = ['vicente.mp3','Mos.mp3', 'Clara.mp3', 'GINGER.mp3']; // Add song file paths here
+		let songIndex = 0;
+
+		// Load the first song
+		function loadSong(index) {
+    	audioPlayer.pause(); // Pause the current song before changing
+    	audioPlayer.src = songs[index];
+    	audioPlayer.load(); // Reload the new song to ensure it starts from the beginning
+    	audioPlayer.play(); // Play the new song
+		}
+
+		// Next song
+		function nextSong() {
+    	songIndex = (songIndex + 1) % songs.length; // Loop back to the start
+    	loadSong(songIndex);
+		}
+
+		// Previous song
+		function prevSong() {
+    	songIndex = (songIndex - 1 + songs.length) % songs.length; // Loop to the last song if negative
+    	loadSong(songIndex);
+		}
+
+		// Load the initial song
+		loadSong(songIndex);
+    	</script>
+</body>
+</html>
